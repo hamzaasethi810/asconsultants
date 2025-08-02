@@ -2,39 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Elite Contracting Solutions - Luxury Design System
+Navy Blue & Light Cream Palette - Louis Vuitton Inspired
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Navy Blue & Cream Luxury Palette */
+    --background: 42 33% 95%; /* Light cream background */
+    --foreground: 217 91% 15%; /* Deep navy text */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 42 33% 97%; /* Slightly lighter cream for cards */
+    --card-foreground: 217 91% 15%; /* Deep navy text on cards */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 42 33% 97%;
+    --popover-foreground: 217 91% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 217 91% 20%; /* Rich navy blue */
+    --primary-foreground: 42 33% 95%; /* Cream text on navy */
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 42 20% 88%; /* Muted cream */
+    --secondary-foreground: 217 91% 15%; /* Navy text */
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 42 15% 90%; /* Very subtle cream */
+    --muted-foreground: 217 45% 35%; /* Muted navy */
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 45 55% 85%; /* Warm accent cream */
+    --accent-foreground: 217 91% 15%; /* Navy text */
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 42 33% 95%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 42 15% 85%; /* Subtle cream border */
+    --input: 42 15% 92%; /* Light cream input */
+    --ring: 217 91% 20%; /* Navy focus ring */
+
+    /* Luxury gradients */
+    --gradient-navy: linear-gradient(135deg, hsl(217 91% 20%), hsl(217 91% 25%));
+    --gradient-cream: linear-gradient(135deg, hsl(42 33% 95%), hsl(45 40% 92%));
+    --gradient-luxury: linear-gradient(135deg, hsl(217 91% 20%) 0%, hsl(217 65% 35%) 100%);
+
+    /* Elegant shadows */
+    --shadow-luxury: 0 20px 40px -12px hsl(217 91% 20% / 0.15);
+    --shadow-elegant: 0 8px 30px -8px hsl(217 91% 20% / 0.1);
+    --shadow-subtle: 0 4px 20px -4px hsl(217 91% 20% / 0.08);
+
+    /* Smooth transitions */
+    --transition-luxury: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --radius: 0.5rem;
 
@@ -100,6 +116,31 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-primary antialiased;
+  }
+}
+
+@layer components {
+  /* Luxury button variants */
+  .btn-luxury {
+    @apply bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-8 py-4 rounded-sm font-medium tracking-wide transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98];
+  }
+  
+  .btn-outline-luxury {
+    @apply border-2 border-primary text-primary px-8 py-4 rounded-sm font-medium tracking-wide transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:shadow-lg;
+  }
+  
+  /* Elegant animations */
+  .fade-in-up {
+    @apply animate-[fadeInUp_0.6s_ease-out_forwards];
+  }
+  
+  .slide-in-right {
+    @apply animate-[slideInRight_0.8s_ease-out_forwards];
+  }
+  
+  /* Luxury container */
+  .luxury-container {
+    @apply max-w-7xl mx-auto px-6 lg:px-8;
   }
 }
