@@ -99,6 +99,16 @@ Alternatively, simply push your code with the included `netlify.toml` file, and 
    - `BUSINESS_EMAIL` - The email address where inquiries should be sent
    - `FLASK_ENV` - Set to "production"
 
+4. The application will automatically redirect all requests to the Flask app, which serves both the frontend static files and API endpoints.
+
+**Note**: Since your application uses a Flask backend that serves both static files and API endpoints, Netlify will run your `deploy.sh` script which builds the frontend and starts the Flask application. The redirects in `netlify.toml` ensure all requests are properly handled by your Flask app.
+
+If you encounter any issues with the build process, you can also try this alternative approach:
+
+1. Set the build command to: `cd backend && pip install -r requirements.txt && cd ../frontend && npm install && npm run build && cd ../backend && mkdir -p build && cp -r ../frontend/dist/* build/`
+2. Set the publish directory to: `backend/build`
+3. Add a `runtime.txt` file in the `backend` directory with the content: `python-3.13`
+
 ### Heroku Deployment
 
 1. Create a new Heroku app:
