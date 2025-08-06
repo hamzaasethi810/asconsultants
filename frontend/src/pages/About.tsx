@@ -35,7 +35,7 @@ const About = () => {
         <div className="luxury-container">
           <div className="max-w-4xl mx-auto text-center space-y-8 animate-fadeInUp">
             <h1 className="text-5xl lg:text-6xl font-heading font-bold text-primary">
-              About Elite Contracting
+              About AS Consultants
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed">
               For over 15 years, we have been the trusted partner for enterprise clients seeking 
@@ -69,8 +69,12 @@ const About = () => {
             
             <div className="animate-slideInRight">
               <div className="relative">
-                <div className="w-full h-80 bg-gradient-luxury rounded-lg shadow-luxury"></div>
-                <div className="absolute inset-4 bg-gradient-cream rounded-lg"></div>
+                <img 
+                  src="/cloudsecurity.jpg" 
+                  alt="Cloud Security Solutions" 
+                  className="w-full h-80 object-cover rounded-lg shadow-luxury border-2 border-primary/20"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent rounded-lg"></div>
               </div>
             </div>
           </div>
@@ -107,7 +111,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Experience Section */}
+      {/* Experience Section
       <section className="py-24 bg-gradient-luxury text-primary-foreground">
         <div className="luxury-container">
           <div className="grid lg:grid-cols-3 gap-12 text-center">
@@ -136,7 +140,7 @@ const About = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section className="py-24 bg-background">

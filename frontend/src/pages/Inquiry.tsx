@@ -56,17 +56,15 @@ const Inquiry = () => {
     }
 
     try {
-      // Simulate API call (replace with actual backend integration)
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const response = await fetch('http://localhost:5003/api/inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
       
-      // In a real implementation, you would:
-      // 1. Send data to your Python backend
-      // 2. Backend sends email and stores in MySQL
-      // const response = await fetch('/api/inquiry', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData)
-      // });
+      if (!response.ok) {
+        throw new Error('Failed to submit inquiry');
+      }
 
       setIsSubmitted(true);
       toast({
@@ -157,17 +155,17 @@ const Inquiry = () => {
                   <Mail className="h-6 w-6 text-primary" />
                   <div>
                     <div className="font-medium text-primary">Email</div>
-                    <div className="text-muted-foreground">hello@elitecontracting.com</div>
+                    <div className="text-muted-foreground">hello@asconsultants.com</div>
                   </div>
                 </div>
                 
-                <div className="flex items-center space-x-4">
+                {/* <div className="flex items-center space-x-4">
                   <Phone className="h-6 w-6 text-primary" />
                   <div>
                     <div className="font-medium text-primary">Phone</div>
-                    <div className="text-muted-foreground">+1 (555) 123-4567</div>
+                    <div className="text-muted-foreground">+703-220-5161</div>
                   </div>
-                </div>
+                </div> */}
                 
                 <div className="flex items-center space-x-4">
                   <MessageSquare className="h-6 w-6 text-primary" />
@@ -179,7 +177,7 @@ const Inquiry = () => {
               </div>
 
               <Card className="border-0 shadow-elegant bg-gradient-cream">
-                <CardContent className="p-6">
+                <CardContent className="p-3">
                   <h3 className="font-heading font-semibold text-primary mb-2">
                     What to Expect
                   </h3>
@@ -284,7 +282,12 @@ const Inquiry = () => {
                     className="btn-luxury w-full group"
                   >
                     {isSubmitting ? (
-                      "Submitting..."
+                      <>
+                        <div className="flex items-center justify-center w-4 h-4 rounded-full bg-primary-foreground mr-2">
+                          <img src="/favicon.ico" alt="AS" className="w-3 h-3" />
+                        </div>
+                        Submitting...
+                      </>
                     ) : (
                       <>
                         Send Inquiry

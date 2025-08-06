@@ -14,9 +14,8 @@ const Hero = () => {
           <div className="space-y-8 animate-fadeInUp">
             <div className="space-y-4">
               <h1 className="text-5xl lg:text-7xl font-heading font-bold text-primary leading-tight">
-                Elite
+                AS Consultants
                 <br />
-                <span className="text-muted-foreground">Contracting</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed max-w-lg">
                 Premium IT infrastructure solutions for enterprise clients. 
@@ -40,15 +39,15 @@ const Hero = () => {
 
             {/* Services preview */}
             <div className="grid grid-cols-3 gap-6 pt-8">
-              <div className="text-center space-y-2 animate-float">
+              <div className="text-center space-y-2">
                 <Server className="h-8 w-8 text-primary mx-auto" />
                 <p className="text-sm font-medium text-muted-foreground">Server Migration</p>
               </div>
-              <div className="text-center space-y-2 animate-float" style={{ animationDelay: '0.5s' }}>
+              <div className="text-center space-y-2">
                 <Cloud className="h-8 w-8 text-primary mx-auto" />
                 <p className="text-sm font-medium text-muted-foreground">Cloud Solutions</p>
               </div>
-              <div className="text-center space-y-2 animate-float" style={{ animationDelay: '1s' }}>
+              <div className="text-center space-y-2">
                 <Shield className="h-8 w-8 text-primary mx-auto" />
                 <p className="text-sm font-medium text-muted-foreground">Security Audits</p>
               </div>
@@ -57,9 +56,12 @@ const Hero = () => {
 
           {/* Visual element */}
           <div className="hidden lg:block animate-slideInRight">
-            <div className="relative">
-              <div className="w-96 h-96 bg-gradient-luxury rounded-full opacity-20 animate-pulse"></div>
-              <div className="absolute inset-0 w-96 h-96 bg-gradient-navy rounded-full opacity-10 animate-float"></div>
+            <div className="flex items-center justify-center">
+              <img 
+                src="/apple-touch-icon.png" 
+                alt="AS Consultants Logo" 
+                className="w-96 h-96 rounded-full shadow-luxury border-4 border-primary/20"
+              />
             </div>
           </div>
         </div>

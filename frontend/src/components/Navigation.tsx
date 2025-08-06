@@ -20,7 +20,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="font-heading font-bold text-2xl text-primary">
-            Elite Contracting
+            AS Consultants
           </Link>
 
           {/* Desktop Navigation */}

@@ -28,7 +28,7 @@ const Home = () => {
   ];
 
   const stats = [
-    { number: "500+", label: "Projects Completed" },
+    // { number: "500+", label: "Projects Completed" },
     { number: "99.9%", label: "Uptime Guarantee" },
     { number: "24/7", label: "Support Available" },
     { number: "15+", label: "Years Experience" }
@@ -72,7 +72,7 @@ const Home = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-24 bg-gradient-luxury text-primary-foreground">
+      {/* <section className="py-24 bg-gradient-luxury text-primary-foreground">
         <div className="luxury-container">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {stats.map((stat, index) => (
@@ -83,7 +83,7 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section className="py-24 bg-background">
