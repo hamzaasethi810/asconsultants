@@ -156,7 +156,7 @@ const Inquiry = () => {
                   <Mail className="h-6 w-6 text-primary" />
                   <div>
                     <div className="font-medium text-primary">Email</div>
-                    <div className="text-muted-foreground">hello@asconsultants.com</div>
+                    <div className="text-muted-foreground">inquiry@asconsultants.com</div>
                   </div>
                 </div>
                 

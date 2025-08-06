@@ -93,8 +93,9 @@ Since Netlify is a static hosting platform, it can only serve your frontend Reac
 
 Alternatively, simply push your code with the included `netlify.toml` file, and Netlify will automatically use those settings.
 
-3. Set this environment variable in Netlify dashboard:
+3. **Important**: Set this environment variable in Netlify dashboard:
    - `VITE_API_URL` - The URL of your deployed backend server (e.g., https://your-backend-app.onrender.com)
+   - Without this variable, the inquiry form will not work!
 
 4. Deploy your backend separately to a platform like Heroku, Render, or AWS.
 
@@ -108,18 +109,25 @@ For local development, the frontend will default to `http://localhost:5003` if `
    - Create a new Heroku app
    - Set buildpack to Python
    - Deploy from your repository
-   - Set environment variables in Heroku dashboard
+   - Set environment variables in Heroku dashboard:
+     - `SMTP_SERVER` - Your SMTP server address
+     - `SMTP_PORT` - Your SMTP server port (usually 587)
+     - `EMAIL_USER` - Email username for sending notifications
+     - `EMAIL_PASSWORD` - Email password or app-specific password
+     - `BUSINESS_EMAIL` - The email address where inquiries should be sent
+     - `FLASK_ENV` - Set to "production"
 
 2. **Render**:
    - Create a new Web Service
    - Set root directory to `backend`
    - Set build command to `pip install -r requirements.txt`
    - Set start command to `gunicorn -c gunicorn.conf.py app:app`
-   - Add environment variables
+   - Add environment variables (same as Heroku above)
 
 3. **Traditional Server**:
    - Clone your repository
    - Run `./startup.sh` or follow the manual deployment steps in this guide
+   - Set environment variables in `backend/.env`
 
 ### Heroku Deployment
 
