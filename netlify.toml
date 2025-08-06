@@ -1,0 +1,31 @@
+[build]
+  base = "/"
+  publish = "backend/build"
+  command = "./deploy.sh"
+
+[build.environment]
+  PYTHON_VERSION = "3.13"
+
+[[plugins]]
+  package = "@netlify/plugin-functions-core"
+
+[functions]
+  directory = "backend/functions"
+
+# Redirect all requests to our Flask app
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+  conditions = {Role = ["admin"]}
+
+# Handle API requests
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api"
+  status = 200
+
+# Environment variables should be set in Netlify dashboard
+# Required variables:
+# SMTP_SERVER, SMTP_PORT, EMAIL_USER, EMAIL_PASSWORD, BUSINESS_EMAIL, FLASK_ENV

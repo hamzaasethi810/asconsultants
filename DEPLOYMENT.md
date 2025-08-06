@@ -81,6 +81,24 @@ This script will:
 
 ## Platform-Specific Deployment Instructions
 
+### Netlify Deployment (Recommended for Static Sites)
+
+1. Connect your GitHub repository to Netlify
+2. In the Netlify dashboard, set these build settings:
+   - Base directory: `/`
+   - Build command: `./deploy.sh`
+   - Publish directory: `backend/build`
+
+Alternatively, simply push your code with the included `netlify.toml` file, and Netlify will automatically use those settings.
+
+3. Set these environment variables in Netlify dashboard:
+   - `SMTP_SERVER` - Your SMTP server address
+   - `SMTP_PORT` - Your SMTP server port (usually 587)
+   - `EMAIL_USER` - Email username for sending notifications
+   - `EMAIL_PASSWORD` - Email password or app-specific password
+   - `BUSINESS_EMAIL` - The email address where inquiries should be sent
+   - `FLASK_ENV` - Set to "production"
+
 ### Heroku Deployment
 
 1. Create a new Heroku app:
