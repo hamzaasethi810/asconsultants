@@ -10,13 +10,11 @@ Setup:
 
 App listens on http://localhost:5001
 """
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from email_validator import validate_email, EmailNotValidError
 import os
 from dotenv import load_dotenv
-# Database functionality commented out as requested
-# from database import Database
 from email_service import EmailService
 
 # Load environment variables
@@ -26,19 +24,25 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for frontend communication
 
 # Initialize services
-# db = Database()
 email_service = EmailService()
 
-# Database initialization commented out
-# try:
-#     db.create_database_and_table()
-# except Exception as e:
-#     print(f"⚠️  Database setup failed: {e}")
-#     print("Please ensure MySQL is running and credentials are correct")
+# Production ready - no database initialization needed
 
 @app.route("/", methods=["GET"])
 def health_check():
-    return "Luxury Digital Concierge Backend Running", 200
+    # Serve the main index.html file
+    try:
+        return send_from_directory('build', 'index.html')
+    except Exception as e:
+        return jsonify({"status": "error", "message": "Frontend not built yet"}), 500
+
+# Serve frontend static files
+@app.route('/<path:path>')
+def serve_frontend(path):
+    try:
+        return send_from_directory('build', path)
+    except FileNotFoundError:
+        return send_from_directory('build', 'index.html')
 
 @app.route("/api/inquiry", methods=["POST"])
 def receive_inquiry():
@@ -66,21 +70,8 @@ def receive_inquiry():
         
         print(f"📩 Received inquiry from: {inquiry.get('name')} ({inquiry.get('email')})")
         
-        # Database functionality commented out
-        # inquiry_id = db.save_inquiry(
-        #     inquiry.get('name'),
-        #     inquiry.get('email'),
-        #     inquiry.get('phone', ''),
-        #     inquiry.get('service', ''),
-        #     inquiry.get('message')
-        # )
-        inquiry_id = 1  # Dummy value since we're not using database
-        
-        # if inquiry_id is None:
-        #     return jsonify({
-        #         "status": "error", 
-        #         "message": "Failed to save inquiry to database"
-        #     }), 500
+        # No database functionality as requested by user
+        inquiry_id = 1  # Dummy value for production
         
         # Send email notification
         email_sent = email_service.send_inquiry_notification(inquiry)

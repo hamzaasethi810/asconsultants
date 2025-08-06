@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "build:frontend": "cd ../frontend && npm install && npm run build && cp -r dist/* ../backend/build/",
+    "postinstall": "npm run build:frontend"
   },
   "dependencies": {
     "cors": "^2.8.5",
