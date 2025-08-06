@@ -1,18 +1,18 @@
 [build]
   base = "/"
-  publish = "backend/build"
-  command = "./deploy.sh"
+  publish = "frontend/dist"
+  command = "cd frontend && npm install && npm run build"
 
 [build.environment]
-  PYTHON_VERSION = "3.13"
+  NODE_VERSION = "20"
 
-# Redirect all requests to our Flask app
+# Redirect API requests to your backend server
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/api/*"
+  to = "https://your-backend-server.com/api/:splat"
   status = 200
-  force = false
+  force = true
 
 # Environment variables should be set in Netlify dashboard
-# Required variables:
-# SMTP_SERVER, SMTP_PORT, EMAIL_USER, EMAIL_PASSWORD, BUSINESS_EMAIL, FLASK_ENV
+# Required for frontend:
+# VITE_API_URL=https://your-backend-server.com

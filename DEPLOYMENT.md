@@ -81,33 +81,45 @@ This script will:
 
 ## Platform-Specific Deployment Instructions
 
-### Netlify Deployment (Recommended for Static Sites)
+### Netlify Deployment (Frontend Only)
+
+Since Netlify is a static hosting platform, it can only serve your frontend React application. You'll need to deploy your Flask backend separately on a platform that supports Python applications (like Heroku, Render, or a VPS).
 
 1. Connect your GitHub repository to Netlify
 2. In the Netlify dashboard, set these build settings:
    - Base directory: `/`
-   - Build command: `./deploy.sh`
-   - Publish directory: `backend/build`
+   - Build command: `cd frontend && npm install && npm run build`
+   - Publish directory: `frontend/dist`
 
 Alternatively, simply push your code with the included `netlify.toml` file, and Netlify will automatically use those settings.
 
-3. Set these environment variables in Netlify dashboard:
-   - `SMTP_SERVER` - Your SMTP server address
-   - `SMTP_PORT` - Your SMTP server port (usually 587)
-   - `EMAIL_USER` - Email username for sending notifications
-   - `EMAIL_PASSWORD` - Email password or app-specific password
-   - `BUSINESS_EMAIL` - The email address where inquiries should be sent
-   - `FLASK_ENV` - Set to "production"
+3. Set this environment variable in Netlify dashboard:
+   - `VITE_API_URL` - The URL of your deployed backend server (e.g., https://your-backend-app.onrender.com)
 
-4. The application will automatically redirect all requests to the Flask app, which serves both the frontend static files and API endpoints.
+4. Deploy your backend separately to a platform like Heroku, Render, or AWS.
 
-**Note**: Since your application uses a Flask backend that serves both static files and API endpoints, Netlify will run your `deploy.sh` script which builds the frontend and starts the Flask application. The redirects in `netlify.toml` ensure all requests are properly handled by your Flask app.
+**Note**: The frontend will make API calls to the URL specified in `VITE_API_URL`. Make sure to update this variable with your actual backend URL after deploying your backend.
 
-If you encounter any issues with the build process, you can also try this alternative approach:
+For local development, the frontend will default to `http://localhost:5003` if `VITE_API_URL` is not set.
 
-1. Set the build command to: `cd backend && pip install -r requirements.txt && cd ../frontend && npm install && npm run build && cd ../backend && mkdir -p build && cp -r ../frontend/dist/* build/`
-2. Set the publish directory to: `backend/build`
-3. Add a `runtime.txt` file in the `backend` directory with the content: `python-3.13`
+#### Backend Deployment Options
+
+1. **Heroku**:
+   - Create a new Heroku app
+   - Set buildpack to Python
+   - Deploy from your repository
+   - Set environment variables in Heroku dashboard
+
+2. **Render**:
+   - Create a new Web Service
+   - Set root directory to `backend`
+   - Set build command to `pip install -r requirements.txt`
+   - Set start command to `gunicorn -c gunicorn.conf.py app:app`
+   - Add environment variables
+
+3. **Traditional Server**:
+   - Clone your repository
+   - Run `./startup.sh` or follow the manual deployment steps in this guide
 
 ### Heroku Deployment
 
