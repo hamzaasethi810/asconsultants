@@ -13,6 +13,12 @@
   status = 200
   force = true
 
+# SPA redirect - all non-API routes should serve index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
 # Environment variables should be set in Netlify dashboard
 # Required for frontend:
 # VITE_API_URL=https://your-backend-server.com
